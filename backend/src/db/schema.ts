@@ -15,7 +15,9 @@ export const products = pgTable("products",{
     title: text("title").notNull(),
     description: text("description").notNull(),
     imageUrl: text("image_url").notNull(),
-    userId: text("user_id").notNull().references(()=> users.id,{onDelete: "cascade"})//This means whenever delete the user the whole product will be deleting too.
+    userId: text("user_id").notNull().references(()=> users.id,{onDelete: "cascade"}),
+    createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow(),//This means whenever delete the user the whole product will be deleting too.
 });
 
 export const comments = pgTable("comments",{
